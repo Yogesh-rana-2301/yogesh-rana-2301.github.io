@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
@@ -61,12 +61,12 @@ export const TimelineItem = ({
       {!isLast && (
         <div className="absolute left-4 sm:left-6 top-10 sm:top-12 bottom-0 w-0.5 bg-gradient-to-b from-border to-muted/30" />
       )}
-      
+
       {/* Timeline dot with logo */}
       <div className="absolute left-0 top-0 w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-background shadow-lg bg-background flex items-center justify-center">
         <Avatar className="size-6 sm:size-10 border">
           <AvatarImage
-            src={logoUrl}
+            src={getAssetPath(logoUrl)}
             alt={altText}
             className="object-contain"
           />
@@ -92,18 +92,14 @@ export const TimelineItem = ({
               {badges && badges.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-2">
                   {badges.map((badge, index) => (
-                    <Badge
-                      variant="secondary"
-                      className="text-xs"
-                      key={index}
-                    >
+                    <Badge variant="secondary" className="text-xs" key={index}>
                       {badge}
                     </Badge>
                   ))}
                 </div>
               )}
             </div>
-            
+
             <div className="flex items-center justify-between sm:justify-start gap-2">
               <span className="text-sm font-medium text-muted-foreground bg-muted/50 px-2 sm:px-3 py-1 rounded-full whitespace-nowrap">
                 {period}
@@ -197,7 +193,7 @@ export const ResumeCard = ({
         <div className="flex-none p-content-md">
           <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
             <AvatarImage
-              src={logoUrl}
+              src={getAssetPath(logoUrl)}
               alt={altText}
               className="object-contain"
             />

@@ -5,6 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function getBasePath() {
+  return process.env.NEXT_PUBLIC_BASE_PATH || "";
+}
+
+export function getAssetPath(path: string) {
+  const basePath = getBasePath();
+  return `${basePath}${path}`;
+}
+
 export function formatDate(date: string) {
   let currentDate = new Date().getTime();
   if (!date.includes("T")) {

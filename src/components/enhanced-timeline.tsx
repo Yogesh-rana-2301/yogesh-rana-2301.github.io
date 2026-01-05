@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 interface TimelineItem {
   logoUrl: string;
@@ -22,7 +23,10 @@ interface EnhancedTimelineProps {
   delay?: number;
 }
 
-export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) => {
+export const EnhancedTimeline = ({
+  items,
+  delay = 0,
+}: EnhancedTimelineProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
@@ -71,7 +75,7 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
     >
       {/* Thin elegant timeline line */}
       <div className="absolute left-4 top-2 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
-      
+
       {/* Timeline items */}
       <div className="space-y-6">
         {items.map((item, index) => (
@@ -84,7 +88,7 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
             <div className="relative z-10 flex-shrink-0">
               <div className="w-8 h-8 rounded-full bg-background border border-primary/30 flex items-center justify-center shadow-sm">
                 <Image
-                  src={item.logoUrl}
+                  src={getAssetPath(item.logoUrl)}
                   alt={item.altText}
                   width={20}
                   height={20}
@@ -95,9 +99,9 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
 
             {/* Content area - clickable to expand */}
             <div className="flex-1 min-w-0 -mt-1">
-              <div 
+              <div
                 className={`cursor-pointer transition-all duration-200 ${
-                  item.bullets ? 'hover:bg-muted/30 rounded-lg p-2 -m-2' : ''
+                  item.bullets ? "hover:bg-muted/30 rounded-lg p-2 -m-2" : ""
                 }`}
                 onClick={() => item.bullets && toggleExpanded(index)}
               >
@@ -125,7 +129,7 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
                       {item.subtitle}
                     </p>
                   </div>
-                  
+
                   {/* Date - right aligned */}
                   <div className="flex-shrink-0 text-right">
                     <span className="text-xs text-muted-foreground/80 font-medium">
@@ -166,7 +170,10 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
                     <div className="mt-3 pt-2 border-t border-border/30">
                       <ul className="space-y-1.5 text-sm text-muted-foreground">
                         {item.bullets.map((bullet, bulletIndex) => (
-                          <li key={bulletIndex} className="flex items-start gap-2">
+                          <li
+                            key={bulletIndex}
+                            className="flex items-start gap-2"
+                          >
                             <span className="w-1 h-1 rounded-full bg-primary/60 mt-2 flex-shrink-0" />
                             <span className="leading-relaxed">{bullet}</span>
                           </li>
@@ -175,15 +182,17 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
                     </div>
                   </motion.div>
                 )}
-                
+
                 {/* Subtle click hint for items with bullets */}
-                {item.bullets && item.bullets.length > 0 && !expandedItems.has(index) && (
-                  <div className="mt-2">
-                    <span className="text-xs text-muted-foreground/60 italic">
-                      Click to view details
-                    </span>
-                  </div>
-                )}
+                {item.bullets &&
+                  item.bullets.length > 0 &&
+                  !expandedItems.has(index) && (
+                    <div className="mt-2">
+                      <span className="text-xs text-muted-foreground/60 italic">
+                        Click to view details
+                      </span>
+                    </div>
+                  )}
               </div>
             </div>
           </motion.div>
@@ -191,4 +200,4 @@ export const EnhancedTimeline = ({ items, delay = 0 }: EnhancedTimelineProps) =>
       </div>
     </motion.div>
   );
-}; 
+};

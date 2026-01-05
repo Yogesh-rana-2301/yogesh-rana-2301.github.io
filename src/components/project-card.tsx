@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -47,10 +47,7 @@ export function ProjectCard({
         className
       )}
     >
-      <Link
-        href={href || "#"}
-        className="block cursor-pointer"
-      >
+      <Link href={href || "#"} className="block cursor-pointer">
         {video && (
           <video
             src={video}
@@ -63,7 +60,7 @@ export function ProjectCard({
         )}
         {image && (
           <Image
-            src={image}
+            src={getAssetPath(image)}
             alt={title}
             width={500}
             height={300}
