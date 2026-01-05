@@ -71,7 +71,7 @@ export const DATA = {
       location: "Remote",
       title:
         "Open Source Software Developer\nGoogle Summer of Code Participant",
-      logoUrl: "/deepmind.jpg",
+      logoUrl: "deepmind.jpg",
       start: "May 2025",
       end: "Present",
       bullets: [
