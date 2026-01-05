@@ -44,6 +44,9 @@ jobs:
         env:
           NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
