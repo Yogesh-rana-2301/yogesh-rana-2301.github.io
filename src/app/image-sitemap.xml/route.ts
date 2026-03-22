@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const baseUrl = "https://yogeshrana.me";
   const publicDir = path.join(process.cwd(), "public");
@@ -53,7 +55,7 @@ ${imageFiles
         .basename(image, path.extname(image))
         .replace(/[-_]/g, " ")}</image:title>
     </image:image>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;
