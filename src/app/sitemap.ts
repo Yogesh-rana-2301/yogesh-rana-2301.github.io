@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = DATA.url;
 
