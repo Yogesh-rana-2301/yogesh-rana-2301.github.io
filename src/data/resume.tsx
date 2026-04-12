@@ -94,7 +94,7 @@ export const DATA = {
     },
     {
       school: "Karnal International School, Haryana",
-      href: "https://karnalinternationalschool.edu.in",
+      href: "https://www.kisboarding.com",
       degree: "12th Grade CBSE\nScored 94.4% in PCM with Computer Science",
       logoUrl: "/karnal-international-school.png",
       start: "2021",
