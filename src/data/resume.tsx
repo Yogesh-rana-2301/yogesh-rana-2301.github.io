@@ -168,6 +168,23 @@ export const DATA = {
       date: "Aug 2025",
     },
   ],
+
+  achievements: [
+    {
+      name: "IISER Aptitude Test (IAT)",
+      date: "June 2023",
+      issuer: "AIR 443",
+      logoUrl: "/mohali.png",
+      href: "https://www.iiseradmission.in",
+    },
+    {
+      name: "JEE Mains",
+      date: "May 2023",
+      issuer: "AIR 14452",
+      logoUrl: "/jee.png",
+      href: "https://jeemain.nta.nic.in",
+    },
+  ],
   projects: [
     {
       title: "ChefsShell",

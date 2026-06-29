@@ -12,6 +12,7 @@ const DEFAULT_SECTIONS = [
   { id: "education", label: "Education" },
   { id: "projects", label: "Projects" },
   { id: "certifications", label: "Certifications" },
+  { id: "achievements", label: "Achievements" },
   { id: "books", label: "Interests" },
   { id: "chandigarh", label: "Chandigarh" },
   { id: "world", label: "World" },
@@ -61,7 +62,7 @@ export function TableOfContents({
             setActiveSection(entry.target.id);
             // Update current section index
             const sectionIndex = SECTIONS.findIndex(
-              (s) => s.id === entry.target.id
+              (s) => s.id === entry.target.id,
             );
             if (sectionIndex !== -1) {
               setCurrentSectionIndex(sectionIndex);
@@ -70,7 +71,7 @@ export function TableOfContents({
           }
         });
       },
-      { rootMargin: "-50% 0px -50% 0px" } // Trigger when section is in the middle of the screen
+      { rootMargin: "-50% 0px -50% 0px" }, // Trigger when section is in the middle of the screen
     );
 
     // Observe each section
@@ -143,8 +144,8 @@ export function TableOfContents({
                       activeSection === section.id
                         ? "bg-blue-500 border-blue-500 scale-125 shadow-lg shadow-blue-500/50"
                         : index <= currentSectionIndex
-                        ? "bg-blue-400 border-blue-400"
-                        : "bg-background border-gray-300 dark:border-gray-600 group-hover:border-blue-300"
+                          ? "bg-blue-400 border-blue-400"
+                          : "bg-background border-gray-300 dark:border-gray-600 group-hover:border-blue-300",
                     )}
                   />
                 </a>
@@ -163,7 +164,7 @@ export function TableOfContents({
           onClick={handleNextSection}
           className={cn(
             "size-12 bg-background backdrop-blur-lg border rounded-full flex items-center justify-center shadow-lg [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
-            hasViewedAllSections && "bg-green-100 dark:bg-green-900"
+            hasViewedAllSections && "bg-green-100 dark:bg-green-900",
           )}
           title={hasViewedAllSections ? "Go to GitHub" : "Next Section"}
         >
@@ -192,7 +193,7 @@ export function TableOfContents({
                         "flex items-center px-3 py-2 text-sm rounded-md transition-colors",
                         activeSection === section.id
                           ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-medium"
-                          : "text-foreground hover:bg-muted"
+                          : "text-foreground hover:bg-muted",
                       )}
                     >
                       {section.label}

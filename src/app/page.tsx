@@ -5,57 +5,57 @@ import dynamic from "next/dynamic";
 const GitHubContributions = dynamic(
   () =>
     import("@/components/github-contributions").then(
-      (mod) => mod.GitHubContributions
+      (mod) => mod.GitHubContributions,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 const TechStack = dynamic(
   () => import("@/components/tech-stack").then((mod) => mod.TechStack),
-  { ssr: false }
+  { ssr: false },
 );
 const TimelineItem = dynamic(
   () => import("@/components/resume-card").then((mod) => mod.TimelineItem),
-  { ssr: false }
+  { ssr: false },
 );
 const ContactOrbiting = dynamic(
   () =>
     import("@/components/contact-orbiting").then((mod) => mod.ContactOrbiting),
-  { ssr: false }
+  { ssr: false },
 );
 
 const ChandigarhMap = dynamic(
   () => import("@/components/chandigarh-map").then((mod) => mod.ChandigarhMap),
-  { ssr: false }
+  { ssr: false },
 );
 const WorldMap = dynamic(
   () => import("@/components/world-map").then((mod) => mod.WorldMap),
-  { ssr: false }
+  { ssr: false },
 );
 const BlurFade = dynamic(
   () => import("@/components/magicui/blur-fade").then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false },
 );
 const BlurFadeText = dynamic(
   () =>
     import("@/components/magicui/blur-fade-text").then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false },
 );
 const ProjectCard = dynamic(
   () => import("@/components/project-card2").then((mod) => mod.ProjectCard),
-  { ssr: false }
+  { ssr: false },
 );
 const ResumeCard = dynamic(
   () => import("@/components/resume-card").then((mod) => mod.ResumeCard),
-  { ssr: false }
+  { ssr: false },
 );
 const BookCard = dynamic(
   () => import("@/components/book-card").then((mod) => mod.BookCard),
-  { ssr: false }
+  { ssr: false },
 );
 const TableOfContents = dynamic(
   () =>
     import("@/components/table-of-contents").then((mod) => mod.TableOfContents),
-  { ssr: false }
+  { ssr: false },
 );
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -112,99 +112,99 @@ export default function Page() {
       <main className="flex flex-col min-h-[100dvh] py-section-md">
         <TableOfContents />
         <section id="hero" className="mb-section-lg">
-        <div className="w-full space-y-content-lg">
-          <div className="gap-2 flex justify-between items-center">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]}.`}
-              />
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY * 0.5}
-                className="text-xs text-muted-foreground md:text-sm whitespace-pre-line"
-                yOffset={8}
-                text={`Currently based in India, working as a Freelancer.\nSoftware Engineer (Backend & Distributed Systems)`}
-              />
-              <BlurFadeText
-                className="max-w-[600px] text-muted-foreground md:text-xl"
-                delay={BLUR_FADE_DELAY * 2}
-                text={DATA.description}
-              />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY * 3}>
-              <Avatar className="size-40 border">
-                <AvatarImage 
-                  alt="Yogesh Rana - Software Engineer and Backend Developer from Chandigarh, India" 
-                  src={DATA.avatarUrl}
-                  loading="eager"
-                  fetchPriority="high"
+          <div className="w-full space-y-content-lg">
+            <div className="gap-2 flex justify-between items-center">
+              <div className="flex-col flex flex-1 space-y-1.5">
+                <BlurFadeText
+                  delay={BLUR_FADE_DELAY}
+                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                  yOffset={8}
+                  text={`Hi, I'm ${DATA.name.split(" ")[0]}.`}
                 />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
-            </BlurFade>
+                <BlurFadeText
+                  delay={BLUR_FADE_DELAY * 0.5}
+                  className="text-xs text-muted-foreground md:text-sm whitespace-pre-line"
+                  yOffset={8}
+                  text={`Currently based in India, working as a Freelancer.\nSoftware Engineer (Backend & Distributed Systems)`}
+                />
+                <BlurFadeText
+                  className="max-w-[600px] text-muted-foreground md:text-xl"
+                  delay={BLUR_FADE_DELAY * 2}
+                  text={DATA.description}
+                />
+              </div>
+              <BlurFade delay={BLUR_FADE_DELAY * 3}>
+                <Avatar className="size-40 border">
+                  <AvatarImage
+                    alt="Yogesh Rana - Software Engineer and Backend Developer from Chandigarh, India"
+                    src={DATA.avatarUrl}
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                  <AvatarFallback>{DATA.initials}</AvatarFallback>
+                </Avatar>
+              </BlurFade>
+            </div>
           </div>
-        </div>
-      </section>
-      <section id="about" className="mb-section-lg">
-        <div className="space-y-content-md">
-          <BlurFade delay={BLUR_FADE_DELAY * 10}>
-            <h2 className="text-xl font-bold">About</h2>
-          </BlurFade>
-          <div className="space-y-content-sm">
-            <BlurFade delay={BLUR_FADE_DELAY * 11}>
-              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                Hey! I’m a Computer Science engineering student living in
-                Chandigarh. I’m currently studying at PEC Chandigarh, pursuing
-                my bachelor’s degree from 2023 to 2027. I mainly focus on
-                backend development and DevOps, and I occasionally work on
-                frontend as well.
-              </p>
+        </section>
+        <section id="about" className="mb-section-lg">
+          <div className="space-y-content-md">
+            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+              <h2 className="text-xl font-bold">About</h2>
             </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 12}>
-              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                I have worked on several projects, both personal and
-                collaborative, that demonstrate my skills and experience in
-                software development. Feel free to explore my portfolio to see
-                some of my work.
-              </p>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 13}>
-              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                I am currently open to internship opportunities where I can
-                apply my skills and contribute to meaningful projects. If you
-                have an opportunity that aligns with my expertise, please feel
-                free to reach out!
-              </p>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 14}>
-              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                Right now, I am learning Data Structures and Algorithms to
-                enhance my problem-solving skills and improve my coding
-                efficiency. I am also focusing on System Design to better
-                understand how to architect scalable and efficient software
-                systems.
-              </p>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 15}>
-              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                When I&apos;m not coding or solving DSA questions, you&apos;ll
-                find me roaming on the streets, listening to music or on a
-                mission to hunt down the best fast food joint in Chandigarh
-                alone (I might have tried them all by now). And when it comes to
-                fav snack, it&apos;s always &ldquo;No.1&rdquo; Puffcorn.
-              </p>
-            </BlurFade>
+            <div className="space-y-content-sm">
+              <BlurFade delay={BLUR_FADE_DELAY * 11}>
+                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                  Hey! I’m a Computer Science engineering student living in
+                  Chandigarh. I’m currently studying at PEC Chandigarh, pursuing
+                  my bachelor’s degree from 2023 to 2027. I mainly focus on
+                  backend development and DevOps, and I occasionally work on
+                  frontend as well.
+                </p>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 12}>
+                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                  I have worked on several projects, both personal and
+                  collaborative, that demonstrate my skills and experience in
+                  software development. Feel free to explore my portfolio to see
+                  some of my work.
+                </p>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 13}>
+                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                  I am currently open to internship opportunities where I can
+                  apply my skills and contribute to meaningful projects. If you
+                  have an opportunity that aligns with my expertise, please feel
+                  free to reach out!
+                </p>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 14}>
+                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                  Right now, I am learning Data Structures and Algorithms to
+                  enhance my problem-solving skills and improve my coding
+                  efficiency. I am also focusing on System Design to better
+                  understand how to architect scalable and efficient software
+                  systems.
+                </p>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 15}>
+                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                  When I&apos;m not coding or solving DSA questions, you&apos;ll
+                  find me roaming on the streets, listening to music or on a
+                  mission to hunt down the best fast food joint in Chandigarh
+                  alone (I might have tried them all by now). And when it comes
+                  to fav snack, it&apos;s always &ldquo;No.1&rdquo; Puffcorn.
+                </p>
+              </BlurFade>
+            </div>
           </div>
-        </div>
-      </section>
-      {/*<section id="ethics" className="mb-section-lg">
+        </section>
+        {/*<section id="ethics" className="mb-section-lg">
         <div className="space-y-content-md">
           <EthicsQuote delay={BLUR_FADE_DELAY * 15.5} />
         </div>
       </section>*/}
-      {/*
+        {/*
       <section id="work" className="mb-section-lg">
         <div className="space-y-12">
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
@@ -233,188 +233,215 @@ export default function Page() {
         </div>
       </section>
       */}
-      <section id="education" className="mb-section-lg">
-        <div className="space-y-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 19}>
-            <h2 className="text-xl font-bold">Education</h2>
-          </BlurFade>
-          <div className="space-y-0">
-            {DATA.education.map((education, id) => (
-              <BlurFade
-                key={education.school}
-                delay={BLUR_FADE_DELAY * 20 + id * 0.05}
-              >
-                <TimelineItem
-                  logoUrl={education.logoUrl}
-                  altText={education.school}
-                  title={education.school}
-                  subtitle={education.degree}
-                  href={education.href}
-                  period={`${education.start} - ${education.end}`}
-                  isLast={id === DATA.education.length - 1}
-                />
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="tech-stack" className="mb-section-lg">
-        <TechStack delay={BLUR_FADE_DELAY * 21} />
-      </section>
-      <section id="projects" className="mb-section-lg">
-        <div className="space-y-content-lg">
-          <BlurFade delay={BLUR_FADE_DELAY * 22}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work.
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 23 + id * 0.05}
-              >
-                <ProjectCard
-                  href={project.href}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="github" className="mb-section-lg">
-        <GitHubContributions
-          username="yogesh-rana-2301"
-          delay={BLUR_FADE_DELAY * 24}
-        />
-      </section>
-      <section id="certifications" className="mb-section-lg">
-        <div className="space-y-8">
-          <BlurFade delay={BLUR_FADE_DELAY * 25}>
-            <h2 className="text-xl font-bold">Certifications</h2>
-          </BlurFade>
-          <div className="space-y-0">
-            {DATA.certifications.map((certification, id) => (
-              <BlurFade
-                key={certification.name}
-                delay={BLUR_FADE_DELAY * 26 + id * 0.05}
-              >
-                <div className="[&_>_a_>_div]:border-0 [&_>_a_>_div]:p-0 [&_>_a_>_div_>_div]:p-1.5 [&_>_a_>_div_>_div_>_div]:p-1.5">
-                  <ResumeCard
-                    key={certification.name}
-                    href={certification.href}
-                    logoUrl={certification.logoUrl}
-                    altText={certification.name}
-                    title={certification.name}
-                    subtitle={certification.issuer}
-                    period={certification.date}
+        <section id="education" className="mb-section-lg">
+          <div className="space-y-12">
+            <BlurFade delay={BLUR_FADE_DELAY * 19}>
+              <h2 className="text-xl font-bold">Education</h2>
+            </BlurFade>
+            <div className="space-y-0">
+              {DATA.education.map((education, id) => (
+                <BlurFade
+                  key={education.school}
+                  delay={BLUR_FADE_DELAY * 20 + id * 0.05}
+                >
+                  <TimelineItem
+                    logoUrl={education.logoUrl}
+                    altText={education.school}
+                    title={education.school}
+                    subtitle={education.degree}
+                    href={education.href}
+                    period={`${education.start} - ${education.end}`}
+                    isLast={id === DATA.education.length - 1}
                   />
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="books" className="mb-section-lg">
-        <div className="space-y-content-lg">
-          <BlurFade delay={BLUR_FADE_DELAY * 27}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Commonplace Notebook.
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  A curated shelf of the things I watch, read, and return to
-                  when shaping my worldview.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 28}>
-            <div className="space-y-content-lg">
-              {DATA.books.map((themeGroup, themeId) => (
-                <div key={themeGroup.theme} className="space-y-content-sm">
-                  <BlurFade delay={BLUR_FADE_DELAY * 29 + themeId * 0.1}>
-                    <h3 className="text-lg font-semibold text-muted-foreground">
-                      {themeGroup.theme}
-                    </h3>
-                  </BlurFade>
-                  <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-                    {themeGroup.books.map((book, bookId) => (
-                      <BlurFade
-                        key={book.title + book.author}
-                        delay={
-                          BLUR_FADE_DELAY * 28 + themeId * 0.1 + bookId * 0.05
-                        }
-                      >
-                        <BookCard
-                          title={book.title}
-                          author={book.author}
-                          number={book.number}
-                        />
-                      </BlurFade>
-                    ))}
-                  </ul>
-                </div>
+                </BlurFade>
               ))}
             </div>
-          </BlurFade>
-        </div>
-      </section>
-      <section id="chandigarh" className="mb-section-lg">
-        <div className="space-y-content-lg">
-          <BlurFade delay={BLUR_FADE_DELAY * 29}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Best parts of Chandigarh.
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  A collection of notable spots and landmarks in the city
-                  beautiful.
-                </p>
+          </div>
+        </section>
+        <section id="tech-stack" className="mb-section-lg">
+          <TechStack delay={BLUR_FADE_DELAY * 21} />
+        </section>
+        <section id="projects" className="mb-section-lg">
+          <div className="space-y-content-lg">
+            <BlurFade delay={BLUR_FADE_DELAY * 22}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    Check out my latest work.
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    I&apos;ve worked on a variety of projects, from simple
+                    websites to complex web applications. Here are a few of my
+                    favorites.
+                  </p>
+                </div>
               </div>
+            </BlurFade>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+              {DATA.projects.map((project, id) => (
+                <BlurFade
+                  key={project.title}
+                  delay={BLUR_FADE_DELAY * 23 + id * 0.05}
+                >
+                  <ProjectCard
+                    href={project.href}
+                    key={project.title}
+                    title={project.title}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    image={project.image}
+                    video={project.video}
+                    links={project.links}
+                  />
+                </BlurFade>
+              ))}
             </div>
-          </BlurFade>
-          <ChandigarhMap delay={BLUR_FADE_DELAY * 30} />
-        </div>
-      </section>
-      <section id="world" className="mb-section-lg">
-        <div className="space-y-content-lg">
-          <BlurFade delay={BLUR_FADE_DELAY * 31}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  World Map.
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Countries I&apos;ve visited and want to visit.
-                </p>
+          </div>
+        </section>
+        <section id="github" className="mb-section-lg">
+          <GitHubContributions
+            username="yogesh-rana-2301"
+            delay={BLUR_FADE_DELAY * 24}
+          />
+        </section>
+        <section id="certifications" className="mb-section-lg">
+          <div className="space-y-8">
+            <BlurFade delay={BLUR_FADE_DELAY * 25}>
+              <h2 className="text-xl font-bold">Certifications</h2>
+            </BlurFade>
+            <div className="space-y-0">
+              {DATA.certifications.map((certification, id) => (
+                <BlurFade
+                  key={certification.name}
+                  delay={BLUR_FADE_DELAY * 26 + id * 0.05}
+                >
+                  <div className="[&_>_a_>_div]:border-0 [&_>_a_>_div]:p-0 [&_>_a_>_div_>_div]:p-1.5 [&_>_a_>_div_>_div_>_div]:p-1.5">
+                    <ResumeCard
+                      key={certification.name}
+                      href={certification.href}
+                      logoUrl={certification.logoUrl}
+                      altText={certification.name}
+                      title={certification.name}
+                      subtitle={certification.issuer}
+                      period={certification.date}
+                    />
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="achievements" className="mb-section-lg">
+          <div className="space-y-8">
+            <BlurFade delay={BLUR_FADE_DELAY * 25}>
+              <h2 className="text-xl font-bold">Achievements</h2>
+            </BlurFade>
+            <div className="space-y-0">
+              {DATA.achievements.map((achievement, id) => (
+                <BlurFade
+                  key={achievement.name}
+                  delay={BLUR_FADE_DELAY * 26 + id * 0.05}
+                >
+                  <div className="[&_>_a_>_div]:border-0 [&_>_a_>_div]:p-0 [&_>_a_>_div_>_div]:p-1.5 [&_>_a_>_div_>_div_>_div]:p-1.5">
+                    <ResumeCard
+                      key={achievement.name}
+                      logoUrl={achievement.logoUrl}
+                      href={achievement.href}
+                      altText={achievement.name}
+                      title={achievement.name}
+                      subtitle={achievement.issuer}
+                      period={achievement.date}
+                    />
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="books" className="mb-section-lg">
+          <div className="space-y-content-lg">
+            <BlurFade delay={BLUR_FADE_DELAY * 27}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    Commonplace Notebook.
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    A curated shelf of the things I watch, read, and return to
+                    when shaping my worldview.
+                  </p>
+                </div>
               </div>
-            </div>
-          </BlurFade>
-          <WorldMap delay={BLUR_FADE_DELAY * 32} />
-        </div>
-      </section>
-      <ContactOrbiting delay={BLUR_FADE_DELAY * 33} />
-    </main>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 28}>
+              <div className="space-y-content-lg">
+                {DATA.books.map((themeGroup, themeId) => (
+                  <div key={themeGroup.theme} className="space-y-content-sm">
+                    <BlurFade delay={BLUR_FADE_DELAY * 29 + themeId * 0.1}>
+                      <h3 className="text-lg font-semibold text-muted-foreground">
+                        {themeGroup.theme}
+                      </h3>
+                    </BlurFade>
+                    <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                      {themeGroup.books.map((book, bookId) => (
+                        <BlurFade
+                          key={book.title + book.author}
+                          delay={
+                            BLUR_FADE_DELAY * 28 + themeId * 0.1 + bookId * 0.05
+                          }
+                        >
+                          <BookCard
+                            title={book.title}
+                            author={book.author}
+                            number={book.number}
+                          />
+                        </BlurFade>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+        <section id="chandigarh" className="mb-section-lg">
+          <div className="space-y-content-lg">
+            <BlurFade delay={BLUR_FADE_DELAY * 29}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    Best parts of Chandigarh.
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    A collection of notable spots and landmarks in the city
+                    beautiful.
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+            <ChandigarhMap delay={BLUR_FADE_DELAY * 30} />
+          </div>
+        </section>
+        <section id="world" className="mb-section-lg">
+          <div className="space-y-content-lg">
+            <BlurFade delay={BLUR_FADE_DELAY * 31}>
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                    World Map.
+                  </h2>
+                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    Countries I&apos;ve visited and want to visit.
+                  </p>
+                </div>
+              </div>
+            </BlurFade>
+            <WorldMap delay={BLUR_FADE_DELAY * 32} />
+          </div>
+        </section>
+        <ContactOrbiting delay={BLUR_FADE_DELAY * 33} />
+      </main>
     </>
   );
 }
