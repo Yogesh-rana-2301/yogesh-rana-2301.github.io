@@ -192,3 +192,12 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
         }
     }
 }
+
+@keyframes resume-pill-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
