@@ -52,6 +52,69 @@ const ALL_PROJECTS = [
     video: "",
   },
   {
+    title: "BYTEURL",
+    href: "https://github.com/Yogesh-rana-2301/ByteURL",
+    dates: "2026 Jun - 2026 Jul",
+    active: true,
+    description:
+      "Built a production-grade URL shortener in C++20 using Drogon, PostgreSQL, and Redis. Implemented asynchronous REST APIs with C++20 coroutines, Redis caching for low-latency redirects, URL analytics, hit counting, and Dockerized deployment.",
+    technologies: [
+      "C++20",
+      "Drogon",
+      "PostgreSQL",
+      "Redis",
+      "CMake",
+      "Docker",
+      "Docker Compose",
+    ],
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com/Yogesh-rana-2301/BYTEURL",
+        icon: <Icons.github className="size-3" />,
+      },
+      {
+        type: "Demo",
+        href: "https://byteurl-3ua8.onrender.com",
+        icon: <Icons.globe className="size-3" />,
+      },
+    ],
+    image: "/byteurl.png",
+    video: "",
+  },
+  {
+    title: "CrowdMap",
+    href: "https://github.com/Yogesh-rana-2301/CrowdMap",
+    dates: "2025 Aug - 2026 Mar",
+    active: true,
+    description:
+      "Built an AI-powered crowd density monitoring system using YOLOv8, OpenCV, and Streamlit. Implemented real-time people detection, crowd analytics, risk classification, interactive heatmaps with OpenStreetMap, and live alerts to help improve public safety.",
+    technologies: [
+      "Python",
+      "YOLOv8",
+      "OpenCV",
+      "Streamlit",
+      "OpenStreetMap",
+      "Folium",
+      "NumPy",
+      "Pandas",
+    ],
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com/Yogesh-rana-2301/CrowdMap",
+        icon: <Icons.github className="size-3" />,
+      },
+      {
+        type: "Demo",
+        href: "https://yogesh-rana-2301-crowdmap-app-fwrdax.streamlit.app",
+        icon: <Icons.globe className="size-3" />,
+      },
+    ],
+    image: "/crowdmap.png",
+    video: "",
+  },
+  {
     title: "EventHive",
     href: "https://github.com/Yogesh-rana-2301/EventHive",
     dates: "2025 Oct - 2025 Dec",
