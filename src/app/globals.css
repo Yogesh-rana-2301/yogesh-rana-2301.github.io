@@ -4,6 +4,7 @@
 
 @layer base {
     :root {
+      --card-rgb: 255, 255, 255;
       --background: 0 0% 100%;
       --foreground: 210 11.1% 3.53%;
 
@@ -36,6 +37,7 @@
     }
 
     .dark {
+      --card-rgb: 10, 12, 20;
       --background: 210 11.1% 3.53%;
       --foreground: 0 0% 98%;
 
@@ -111,6 +113,15 @@
   /* Typography spacing utilities */
   .prose-spacing {
     @apply space-y-content-sm;
+  }
+
+  /* Glassmorphism card — dark mode overrides */
+  .dark .glass-card-inner {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    ) !important;
   }
 }
 
