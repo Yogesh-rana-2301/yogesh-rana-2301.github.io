@@ -60,10 +60,12 @@ const TableOfContents = dynamic(
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
+import { useRecruiterMode } from "@/lib/recruiter-mode-context";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
+  const { isRecruiterMode } = useRecruiterMode();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -359,87 +361,93 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section id="books" className="mb-section-lg">
-          <div className="space-y-content-lg">
-            <BlurFade delay={BLUR_FADE_DELAY * 27}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    Commonplace Notebook.
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    A curated shelf of the things I watch, read, and return to
-                    when shaping my worldview.
-                  </p>
-                </div>
-              </div>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 28}>
-              <div className="space-y-content-lg">
-                {DATA.books.map((themeGroup, themeId) => (
-                  <div key={themeGroup.theme} className="space-y-content-sm">
-                    <BlurFade delay={BLUR_FADE_DELAY * 29 + themeId * 0.1}>
-                      <h3 className="text-lg font-semibold text-muted-foreground">
-                        {themeGroup.theme}
-                      </h3>
-                    </BlurFade>
-                    <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-                      {themeGroup.books.map((book, bookId) => (
-                        <BlurFade
-                          key={book.title + book.author}
-                          delay={
-                            BLUR_FADE_DELAY * 28 + themeId * 0.1 + bookId * 0.05
-                          }
-                        >
-                          <BookCard
-                            title={book.title}
-                            author={book.author}
-                            number={book.number}
-                          />
-                        </BlurFade>
-                      ))}
-                    </ul>
+        {!isRecruiterMode && (
+          <section id="books" className="mb-section-lg">
+            <div className="space-y-content-lg">
+              <BlurFade delay={BLUR_FADE_DELAY * 27}>
+                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                      Commonplace Notebook.
+                    </h2>
+                    <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                      A curated shelf of the things I watch, read, and return to
+                      when shaping my worldview.
+                    </p>
                   </div>
-                ))}
-              </div>
-            </BlurFade>
-          </div>
-        </section>
-        <section id="chandigarh" className="mb-section-lg">
-          <div className="space-y-content-lg">
-            <BlurFade delay={BLUR_FADE_DELAY * 29}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    Best parts of Chandigarh.
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    A collection of notable spots and landmarks in the city
-                    beautiful.
-                  </p>
                 </div>
-              </div>
-            </BlurFade>
-            <ChandigarhMap delay={BLUR_FADE_DELAY * 30} />
-          </div>
-        </section>
-        <section id="world" className="mb-section-lg">
-          <div className="space-y-content-lg">
-            <BlurFade delay={BLUR_FADE_DELAY * 31}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    World Map.
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Countries I&apos;ve visited and want to visit.
-                  </p>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 28}>
+                <div className="space-y-content-lg">
+                  {DATA.books.map((themeGroup, themeId) => (
+                    <div key={themeGroup.theme} className="space-y-content-sm">
+                      <BlurFade delay={BLUR_FADE_DELAY * 29 + themeId * 0.1}>
+                        <h3 className="text-lg font-semibold text-muted-foreground">
+                          {themeGroup.theme}
+                        </h3>
+                      </BlurFade>
+                      <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                        {themeGroup.books.map((book, bookId) => (
+                          <BlurFade
+                            key={book.title + book.author}
+                            delay={
+                              BLUR_FADE_DELAY * 28 + themeId * 0.1 + bookId * 0.05
+                            }
+                          >
+                            <BookCard
+                              title={book.title}
+                              author={book.author}
+                              number={book.number}
+                            />
+                          </BlurFade>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </BlurFade>
-            <WorldMap delay={BLUR_FADE_DELAY * 32} />
-          </div>
-        </section>
+              </BlurFade>
+            </div>
+          </section>
+        )}
+        {!isRecruiterMode && (
+          <section id="chandigarh" className="mb-section-lg">
+            <div className="space-y-content-lg">
+              <BlurFade delay={BLUR_FADE_DELAY * 29}>
+                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                      Best parts of Chandigarh.
+                    </h2>
+                    <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                      A collection of notable spots and landmarks in the city
+                      beautiful.
+                    </p>
+                  </div>
+                </div>
+              </BlurFade>
+              <ChandigarhMap delay={BLUR_FADE_DELAY * 30} />
+            </div>
+          </section>
+        )}
+        {!isRecruiterMode && (
+          <section id="world" className="mb-section-lg">
+            <div className="space-y-content-lg">
+              <BlurFade delay={BLUR_FADE_DELAY * 31}>
+                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                      World Map.
+                    </h2>
+                    <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                      Countries I&apos;ve visited and want to visit.
+                    </p>
+                  </div>
+                </div>
+              </BlurFade>
+              <WorldMap delay={BLUR_FADE_DELAY * 32} />
+            </div>
+          </section>
+        )}
         <ContactOrbiting delay={BLUR_FADE_DELAY * 33} />
       </main>
     </>

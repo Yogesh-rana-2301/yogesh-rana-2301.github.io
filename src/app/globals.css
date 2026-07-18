@@ -212,3 +212,8 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
     background-position: -200% 0;
   }
 }
+
+@keyframes recruiter-shimmer {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}

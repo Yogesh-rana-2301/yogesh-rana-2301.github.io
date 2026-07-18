@@ -3,6 +3,8 @@ import { ResumePill } from "@/components/resume-pill";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PersonSchema, WebSiteSchema, ProfilePageSchema } from "@/components/structured-data";
+import { RecruiterModeProvider } from "@/lib/recruiter-mode-context";
+import { RecruiterModeFab } from "@/components/recruiter-mode-fab";
 
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
@@ -106,14 +108,17 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TooltipProvider delayDuration={0}>
-            <ResumePill />
+          <RecruiterModeProvider>
+            <TooltipProvider delayDuration={0}>
+              <RecruiterModeFab />
+              <ResumePill />
 
-            <div className="max-w-2xl mx-auto px-container-padding">
-              {children}
-            </div>
-            <Navbar />
-          </TooltipProvider>
+              <div className="max-w-2xl mx-auto px-container-padding">
+                {children}
+              </div>
+              <Navbar />
+            </TooltipProvider>
+          </RecruiterModeProvider>
         </ThemeProvider>
       </body>
     </html>
