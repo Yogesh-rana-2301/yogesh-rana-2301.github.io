@@ -28,12 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/pics`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    },
+    // /pics is intentionally excluded — personal gallery, not for indexing
   ];
 
   // Get all blog posts

@@ -9,8 +9,7 @@ export function PersonSchema() {
     image: `${DATA.url}/yogesh.png`,
     jobTitle: "Software Engineer",
     description: DATA.description,
-    email: DATA.contact.email,
-    telephone: DATA.contact.tel,
+    // email and telephone intentionally omitted — prevents AI/spam scraping
     address: {
       "@type": "PostalAddress",
       addressLocality: "Chandigarh",

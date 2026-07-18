@@ -36,7 +36,10 @@ export async function GET() {
     return results;
   };
 
-  const imageFiles = getImages(publicDir);
+  // Exclude personal photos from the image sitemap
+  const imageFiles = getImages(publicDir).filter(
+    (img) => !img.startsWith("/pics/")
+  );
 
   // Generate XML sitemap
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
