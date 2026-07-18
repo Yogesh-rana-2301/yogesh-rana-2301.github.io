@@ -2,6 +2,7 @@
   "name": "yogeshrana-portfolio",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.30.1",
   "homepage": "https://yogesh-rana-2301.github.io",
   "scripts": {
     "dev": "next dev",
