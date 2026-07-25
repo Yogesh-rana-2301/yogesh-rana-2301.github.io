@@ -29,12 +29,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "22"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
+        # version is intentionally omitted — pnpm version is pinned via
+        # "packageManager" in package.json (pnpm@10.30.1). Specifying both causes
+        # ERR_PNPM_BAD_PM_VERSION / multiple versions conflict.
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
