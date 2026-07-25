@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import Image from "next/image";
@@ -56,64 +56,73 @@ const locations = {
   },
 };
 
-// Custom icon definitions
-const natureIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-const urbanIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
 export const ChandigarhMap = ({ delay = 0 }: ChandigarhMapProps) => {
-  const [isClient, setIsClient] = useState(false);
+  // Ref to the Leaflet map instance
+  const mapRef = useRef<L.Map | null>(null);
 
+  // Fix Leaflet default icon paths (must run client-side)
   useEffect(() => {
-    setIsClient(true);
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+      iconUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+      shadowUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+    });
   }, []);
 
-  // Fix for Leaflet marker icons in Next.js
+  // Critical fix: React Strict Mode mounts → unmounts → remounts every component
+  // in development. Leaflet sets `_leaflet_id` on the DOM node but map.remove()
+  // does NOT clear it, so on remount Leaflet throws "already initialized".
+  // We grab the container from the map ref and null out _leaflet_id ourselves.
   useEffect(() => {
-    if (isClient) {
-      delete (L.Icon.Default.prototype as any)._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl:
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-        iconUrl:
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-        shadowUrl:
-          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-      });
-    }
-  }, [isClient]);
+    return () => {
+      if (mapRef.current) {
+        try {
+          const container = mapRef.current.getContainer();
+          mapRef.current.remove();
+          if (container) (container as any)._leaflet_id = null;
+        } catch {
+          // Map may already have been removed by react-leaflet's own cleanup
+        }
+        mapRef.current = null;
+      }
+    };
+  }, []);
 
-  if (!isClient) {
-    return (
-      <BlurFade delay={delay}>
-        <div className="flex justify-center">
-          <div className="bg-card border rounded-lg p-6 w-full max-w-4xl">
-            <div className="h-96 flex items-center justify-center">
-              Loading Chandigarh Map...
-            </div>
-          </div>
-        </div>
-      </BlurFade>
-    );
-  }
+  // Create icons lazily inside the component (never at module level)
+  // so they are only instantiated in the browser, never during SSR.
+  const natureIcon = useMemo(
+    () =>
+      new L.Icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    []
+  );
+
+  const urbanIcon = useMemo(
+    () =>
+      new L.Icon({
+        iconUrl:
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+        shadowUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    []
+  );
 
   return (
     <BlurFade delay={delay}>
@@ -122,7 +131,8 @@ export const ChandigarhMap = ({ delay = 0 }: ChandigarhMapProps) => {
           <div className="flex flex-col items-center space-y-6">
             <div className="relative w-full h-96 max-w-4xl rounded-lg overflow-hidden border">
               <MapContainer
-                center={[30.7333, 76.7794]} // Center of Chandigarh
+                ref={mapRef}
+                center={[30.7333, 76.7794]}
                 zoom={12}
                 style={{ height: "100%", width: "100%" }}
                 scrollWheelZoom={false}
@@ -149,21 +159,23 @@ export const ChandigarhMap = ({ delay = 0 }: ChandigarhMapProps) => {
             <div className="flex items-center space-x-6 text-sm">
               <div className="flex items-center space-x-2">
                 <Image
-                  src={natureIcon.options.iconUrl}
+                  src={natureIcon.options.iconUrl as string}
                   alt="Nature"
                   width={16}
                   height={16}
                   className="w-4 h-auto"
+                  unoptimized
                 />
                 <span>Nature</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Image
-                  src={urbanIcon.options.iconUrl}
+                  src={urbanIcon.options.iconUrl as string}
                   alt="Urban"
                   width={16}
                   height={16}
                   className="w-4 h-auto"
+                  unoptimized
                 />
                 <span>Urban</span>
               </div>

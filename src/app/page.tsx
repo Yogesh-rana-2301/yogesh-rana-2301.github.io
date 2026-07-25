@@ -82,8 +82,7 @@ export default function Page() {
       name: "Punjab Engineering College",
       url: "https://www.pec.ac.in",
     },
-    email: DATA.contact.email,
-    telephone: DATA.contact.tel,
+    // email and telephone intentionally omitted — not exposed in source
     sameAs: [
       DATA.contact.social.GitHub.url,
       DATA.contact.social.LinkedIn.url,

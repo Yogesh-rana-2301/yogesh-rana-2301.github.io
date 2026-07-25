@@ -28,8 +28,7 @@ export const DATA = {
     { href: "/pics", icon: NotebookIcon, label: "Pics" },
   ],
   contact: {
-    email: "hi.yogeshrana@gmail.com",
-    tel: "+91 9896441647",
+    // email and tel intentionally not stored here — use Formspree contact form
     social: {
       GitHub: {
         name: "GitHub",
@@ -56,8 +55,8 @@ export const DATA = {
         navbar: true,
       },
       email: {
-        name: "Send Email",
-        url: "mailto:yogeshrana2301@gmail.com",
+        name: "Contact",
+        url: "#contact",
         icon: Icons.email,
         navbar: false,
       },
