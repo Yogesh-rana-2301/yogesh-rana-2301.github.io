@@ -15,7 +15,7 @@ export function ResumePill() {
       }}
     >
       <a
-        href="https://drive.google.com/file/d/1uMRCEwjCTb2Zz70GEFbU-jnQ9TUmZycB/view?usp=share_link"
+        href="https://drive.google.com/file/d/1xMW-wRPaLo6iN5HSBDwtWqJwM6_iU7sa/view?usp=share_link"
         target="_blank"
         rel="noopener noreferrer"
         id="resume-download-btn"
