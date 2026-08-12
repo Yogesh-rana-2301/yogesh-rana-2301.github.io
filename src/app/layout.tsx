@@ -92,6 +92,40 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (DATA.maintenanceMode) {
+    return (
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="w-screen h-screen overflow-hidden bg-background">
+              {/* Mobile Image */}
+              {DATA.maintenanceImageMobile && (
+                <img 
+                  src={DATA.maintenanceImageMobile}
+                  alt="Under Maintenance" 
+                  className="w-full h-full object-cover md:hidden"
+                />
+              )}
+              {/* Desktop Image */}
+              {DATA.maintenanceImageDesktop && (
+                <img 
+                  src={DATA.maintenanceImageDesktop}
+                  alt="Under Maintenance" 
+                  className="w-full h-full object-cover hidden md:block"
+                />
+              )}
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
