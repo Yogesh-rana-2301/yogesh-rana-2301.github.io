@@ -8,6 +8,9 @@ import {
 } from "lucide-react";
 
 export const DATA = {
+  maintenanceMode: false,
+  maintenanceImageMobile: "./mobile.png", // Add your mobile image link here
+  maintenanceImageDesktop: "./desktop.png", // Add your desktop image link here
   name: "Yogesh Rana",
   initials: "YR",
   url: "https://yogeshrana.me",
@@ -52,6 +55,12 @@ export const DATA = {
         name: "Youtube",
         url: "https://www.youtube.com/@SameerRana-2004",
         icon: Icons.youtube,
+        navbar: true,
+      },
+      LeetCode: {
+        name: "LeetCode",
+        url: "https://leetcode.com/u/yogesh-rana-2301",
+        icon: Icons.leetcode,
         navbar: true,
       },
       email: {
