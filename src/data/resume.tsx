@@ -59,7 +59,7 @@ export const DATA = {
       },
       LeetCode: {
         name: "LeetCode",
-        url: "https://leetcode.com/u/yogesh-rana-2301",
+        url: "https://leetcode.com/u/_kritsnasya___/",
         icon: Icons.leetcode,
         navbar: true,
       },
