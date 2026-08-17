@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const DATA = {
-  maintenanceMode: true,
+  maintenanceMode: false,
   maintenanceImageMobile: "./mobile.png", // Add your mobile image link here
   maintenanceImageDesktop: "./desktop.png", // Add your desktop image link here
   name: "Yogesh Rana",
