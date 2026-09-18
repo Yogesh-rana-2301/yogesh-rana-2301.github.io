@@ -95,7 +95,7 @@ export const DATA = {
       school: "Punjab Engineering College, Chandigarh",
       href: "https://www.pec.ac.in",
       degree:
-        "Bachelor of Technology in Computing Science with Specialization in Data Science Engineering \nCGPA: 8.64/10 (Till 6th Semester)",
+        "Bachelor of Technology in Computing Science with Specialization in Data Science Engineering \nCGPA: 8.71/10 (Till 6th Semester)",
       logoUrl: "/pec.png",
       start: "2023",
       end: "2027",
