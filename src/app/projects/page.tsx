@@ -135,7 +135,7 @@ const ALL_PROJECTS = [
         icon: <Icons.github className="size-3" />,
       },
     ],
-    image: "/github-rag.png",
+    image: "/rag.png",
     video: "",
   },
   {
