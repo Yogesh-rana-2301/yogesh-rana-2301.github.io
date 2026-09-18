@@ -113,6 +113,30 @@ const ALL_PROJECTS = [
     ],
     image: "/crowdmap.png",
     video: "",
+  },  {
+    title: "GitHub Codebase RAG with Evaluation Harness",
+    href: "https://github.com/Yogesh-rana-2301/GitHub-RAG-Eval",
+    dates: "2026 May - 2026 Aug",
+    active: true,
+    description:
+      "Built a Retrieval-Augmented Generation (RAG) system entirely from scratch to query GitHub repositories using natural language. Implemented custom document chunking strategies, local vector embeddings, FAISS for exact nearest-neighbor search, and a CrossEncoder for re-ranking. Features a built-in evaluation harness to empirically measure retrieval hit rates across different pipeline configurations.",
+    technologies: [
+      "Python",
+      "FAISS",
+      "Sentence-Transformers",
+      "CrossEncoder",
+      "Gemini 1.5 Flash",
+      "Vector Search"
+    ],
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com/Yogesh-rana-2301/GitHub-Codebase-RAG",
+        icon: <Icons.github className="size-3" />,
+      },
+    ],
+    image: "/github-rag.png",
+    video: "",
   },
   {
     title: "EventHive",
